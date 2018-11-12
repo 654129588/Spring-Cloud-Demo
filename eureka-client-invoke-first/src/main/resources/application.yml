@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: eureka-client-invoke
+server:
+  port: 8080
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registryFetchIntervalSeconds: 30 #默认30秒抓取一次服务列表,较耗费性能
