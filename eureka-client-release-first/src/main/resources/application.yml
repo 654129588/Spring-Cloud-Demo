@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: eureka-client-release
+  cloud:
+    stream: #队列设置
+      bindings:
+        sink: #队列名
+          group: mysink #组名，分布式消费者用于同组名负载均衡，不设置则为广播
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5 #5秒发送一次心跳给eureka服务器
+    leaseExpirationDurationInSeconds: 10 #10秒接收不到心跳把服务断开
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/, http://localhost:8762/eureka/
+    instanceInfoReplicationIntervalSeconds: 10 #10秒发送一次服务状态给eureka服务器(用于actuator健康检查)
